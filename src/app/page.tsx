@@ -5,8 +5,9 @@ import { BackgroundLines } from "@/components/ui/background-lines";
 import Navbar from "@/components/Header";
 import abi from "../assets/Raffle Abi.json" assert { type: "json" };
 import { BaseTransactionOptionsUpdated, enterRaffle, getNumberOfPlayers, } from "../thirdweb/11155111/0x2fc699ebe3833268bcddc40ed778ff9f40e317fb"
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { prepareContractCall, sendTransaction } from "thirdweb"
+import { Button } from "@/components/ui/button";
 // import {
 //     useContractWrite,
 //     useContract,
@@ -25,6 +26,8 @@ import { Account } from "thirdweb/wallets";
 import { useWallet } from "@thirdweb-dev/react"
 
 export default function Home() {
+    const [ pay, setPay ] = useState(false)
+
     const wallet = useWallet()
     var account: Account
     if (wallet) {
@@ -72,7 +75,7 @@ export default function Home() {
             console.log("Transaction response: ", txResponse)
         }
         getPlayers()
-    }, [])
+    }, [pay])
 
 
 
@@ -84,6 +87,7 @@ export default function Home() {
                     <Navbar />
 
                     <div className="flex justify-center mb-20 ">
+                        <Button onClick={() => setPay(true)} className="bg-[#f9a826] text-black p-2 rounded-full py-2">Enter Raffle</Button>
                     </div>
 
                 </div>
