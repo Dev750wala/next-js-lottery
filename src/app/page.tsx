@@ -23,14 +23,15 @@ import { isBaseTransactionOptions } from "thirdweb";
 import { TranasctionOptions } from "thirdweb/react";
 import { useActiveAccount } from "thirdweb/react";
 import { Account } from "thirdweb/wallets";
-import { useWallet } from "@thirdweb-dev/react"
+import { useConnectionStatus } from "@thirdweb-dev/react"
+// import { useWalletBalance,  } from "thirdweb/react"
 
 export default function Home() {
     const [ pay, setPay ] = useState(false)
 
-    const wallet = useWallet()
+    const connectionStatus = useConnectionStatus()
     var account: Account
-    if (wallet) {
+    if (connectionStatus === "connected") {
         account = useActiveAccount() as Account
     }
     // const { contract }: UseContractResult = useContract("0x2fC699ebE3833268BcDdC40Ed778FF9f40e317fB");
@@ -85,9 +86,14 @@ export default function Home() {
             <main className="p-4 pb-10 min-h-[100vh] flex items-center justify-center container max-w-screen-lg mx-auto">
                 <div className="py-20">
                     <Navbar />
-
                     <div className="flex justify-center mb-20 ">
-                        <Button onClick={() => setPay(true)} className="bg-[#f9a826] text-black p-2 rounded-full py-2">Enter Raffle</Button>
+                        {
+                            connectionStatus === "connected" ? (
+                                <Button onClick={() => setPay(true)} className="bg-[#f9a826] text-black p-2 rounded-full py-2">Enter Raffle</Button>
+                            ) : (
+                                <h1>Connect your wallet first</h1>
+                            )
+                        }
                     </div>
 
                 </div>
