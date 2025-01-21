@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import { Button } from "@/components/ui/button"
 import { createWallet } from 'thirdweb/wallets'
 import { ConnectButton } from 'thirdweb/react'
 import { client } from '@/app/client'
