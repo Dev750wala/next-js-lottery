@@ -16,7 +16,7 @@ export default function Home() {
     const [isConnected, setIsConnected] = useState(false);
     const [totalPlayers, setTotalPlayers] = useState(0);
     const [lastWinner, setLastWinner] = useState("");
-    const [entranceFee, setEntranceFee] = useState(0);
+    const [entranceFee, setEntranceFee] = useState("");
 
     useEffect(() => {
         const fetchRaffleData = async () => {
@@ -34,7 +34,7 @@ export default function Home() {
             const entranceFee = await getEntranceFee(options)
             setTotalPlayers(Number(totalPlayers))
             setLastWinner(recentWinner)
-            setEntranceFee(Number(entranceFee))
+            setEntranceFee((Number(entranceFee)*10**-18).toString())
         }
         fetchRaffleData()
     }, [])
@@ -75,20 +75,20 @@ export default function Home() {
 
     return (
         <BackgroundLines className="bg-[#040514] h-screen flex items-center justify-center w-full flex-col px-4">
-            <main className="p-4 pb-10 min-h-[100vh] flex items-center justify-center container max-w-screen-lg mx-auto">
-                <div className="py-20">
+            <main className="p-4 pb-10 min-h-[100vh] flex flex-row justify-start container max-w-screen-lg z-10">
+                <div className="py-20 ">
                     <Navbar />
                     <div className="flex flex-col justify-start mb-20 gap-4">
                         <h1 className="text-6xl font-extrabold text-yellow-50">Welcome to the Dev Raffle</h1>
                         <h2 className="text-2xl font-bold text-yellow-50">Total Players: {totalPlayers}</h2>
                         <h2 className="text-2xl font-bold text-yellow-50">Last Winner: {lastWinner}</h2>
-                        <h2 className="text-2xl font-bold text-yellow-50">Entrance Fee: {entranceFee}</h2>
+                        <h2 className="text-2xl font-bold text-yellow-50">Entrance Fee: {entranceFee} ETH</h2>
                         {isConnected ? (
                             <Button onClick={handleEnterRaffle} className=" bg-[#fffb27] text-black p-2 rounded-full py-2 font-semibold">
                                 Pay {entranceFee} to enter raffle
                             </Button>
                         ) : (
-                            <h1 className="text-3xl font-bold text-yellow-50">Connect your wallet first</h1>
+                            <h1 className="text-3xl font-bold text-red-600 rounded-xl bg-white p-2">Connect your wallet first</h1>
                         )}
                     </div>
                     {/* <button>Hello World</button> */}
