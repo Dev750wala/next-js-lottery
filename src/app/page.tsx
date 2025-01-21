@@ -80,7 +80,6 @@ export default function Home() {
     }, [pay])
 
 
-
     return (
         <BackgroundLines className="bg-[#040514] h-screen flex items-center justify-center w-full flex-col px-4">
 
