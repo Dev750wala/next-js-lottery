@@ -34,6 +34,7 @@ export default function Home() {
     if (connectionStatus === "connected") {
         account = useActiveAccount() as Account
     }
+    
     // const { contract }: UseContractResult = useContract("0x2fC699ebE3833268BcDdC40Ed778FF9f40e317fB");
     // const contract = getContract({
     //     client: client,
