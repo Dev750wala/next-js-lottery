@@ -40,9 +40,6 @@ export default function Navbar() {
                                 showThirdwebBranding: false,
                             }}
                         />
-                        {/* <Button onClick={(e) => alert("Hello World")} className="z-50 bg-[#f9a826] text-black p-2 rounded-full py-2">
-                            Enter Raffle
-                        </Button> */}
                     </div>
                 </div>
             </div>

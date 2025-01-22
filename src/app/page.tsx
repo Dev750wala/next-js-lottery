@@ -74,12 +74,12 @@ export default function Home() {
     }
 
     return (
-        <BackgroundLines className="bg-[#040514] h-screen flex items-center justify-center w-full flex-col px-4">
-            <main className="p-4 pb-10 min-h-[100vh] flex flex-row justify-start container max-w-screen-lg z-10">
-                <div className="py-20 ">
+        <BackgroundLines className="bg-[#040514] h-screen flex items-center justify-center w-full flex-col py-4">
+            <main className="pt-4 min-h-[100vh] flex flex-row justify-start container w-screen z-10">
+                <div className="py-20">
                     <Navbar />
-                    <div className="flex flex-col justify-start mb-20 gap-4">
-                        <h1 className="text-6xl font-extrabold text-yellow-50">Welcome to the Dev Raffle</h1>
+                    <div className="flex flex-col justify-center items-start w-[70vw] h-[65vh] mb-20 gap-4">
+                        <h1 className="text-8xl font-extrabold text-yellow-50">Welcome to the Dev Raffle</h1>
                         <h2 className="text-2xl font-bold text-yellow-50">Total Players: {totalPlayers}</h2>
                         <h2 className="text-2xl font-bold text-yellow-50">Last Winner: {lastWinner}</h2>
                         <h2 className="text-2xl font-bold text-yellow-50">Entrance Fee: {entranceFee} ETH</h2>
