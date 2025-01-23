@@ -9,10 +9,11 @@ import { BaseTransactionOptionsUpdated, enterRaffle, getNumberOfPlayers, getRece
 import { BaseTransactionOptions, sendTransaction } from "thirdweb";
 import { sepolia } from "thirdweb/chains";
 import { client } from "./client";
-import { useActiveAccount } from "thirdweb/react";
+import { useActiveAccount, useActiveWalletChain } from "thirdweb/react";
 
 export default function Home() {
     const account = useActiveAccount();
+    const chain = useActiveWalletChain();
     const [isConnected, setIsConnected] = useState(false);
     const [totalPlayers, setTotalPlayers] = useState(0);
     const [lastWinner, setLastWinner] = useState("");
@@ -40,9 +41,13 @@ export default function Home() {
     }, [])
 
 
+    console.log("Chain: ", chain);
+    
     useEffect(() => {
-        setIsConnected(!!account);
-    }, [account]);
+        if (account && chain?.name === "Sepolia") {
+            setIsConnected(!!account);
+        }
+    }, [account, chain]);
 
     async function handleEnterRaffle(e: React.MouseEvent<HTMLButtonElement>) {
         e.preventDefault();
@@ -78,8 +83,8 @@ export default function Home() {
             <main className="pt-4 min-h-[100vh] flex flex-row justify-start container w-screen z-10">
                 <div className="py-20">
                     <Navbar />
-                    <div className="flex flex-col justify-center items-start w-[70vw] h-[65vh] mb-20 gap-4">
-                        <h1 className="text-8xl font-extrabold text-yellow-50">Welcome to the Dev Raffle</h1>
+                    <div className="flex flex-col justify-center items-start w-[70vw] h-[65vh] mb-20 gap-4 ml-10">
+                        <h1 className="text-6xl font-extrabold text-yellow-50">Welcome to the Dev Raffle</h1>
                         <h2 className="text-2xl font-bold text-yellow-50">Total Players: {totalPlayers}</h2>
                         <h2 className="text-2xl font-bold text-yellow-50">Last Winner: {lastWinner}</h2>
                         <h2 className="text-2xl font-bold text-yellow-50">Entrance Fee: {entranceFee} ETH</h2>

@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { createWallet } from 'thirdweb/wallets'
 import { ConnectButton } from 'thirdweb/react'
 import { client } from '@/app/client'
+import { sepolia } from 'thirdweb/chains'
 
 export default function Navbar() {
     const wallets = [
@@ -28,6 +29,7 @@ export default function Navbar() {
                         <ConnectButton
                             client={client}
                             wallets={wallets}
+                            chain={sepolia}
                             connectButton={
                                 {
                                     label: "Connect wallet",
