@@ -9,9 +9,6 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Dev Raffle",
   description: "Raffle DApp",
-  icons: {
-    icon: "../../public/ethereum-eth-logo.svg",
-  }
 };
 
 export default function RootLayout({
